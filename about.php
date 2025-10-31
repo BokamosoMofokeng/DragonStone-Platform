@@ -1,2 +1,0 @@
-<?php session_start(); include 'includes/header.php'; ?>
-<div class="container py-5"><h2>About DragonStone</h2><p>Founded by eco-conscious entrepreneurs, DragonStone curates sustainable and stylish home products. Our goal is to make sustainable living accessible and aspirational.</p></div><?php include 'includes/footer.php'; ?>
