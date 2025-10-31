@@ -1,0 +1,9 @@
+<?php session_start(); include '../db_connect.php'; if(empty($_SESSION['admin_id'])){ header('Location: admin_login.php'); exit(); } include '../includes/header.php'; ?>
+<div class="container py-5"><h2>Admin Dashboard</h2><p>Welcome, <?php echo htmlspecialchars($_SESSION['admin_name']); ?></p>
+<h4>Users</h4>
+<?php $res=$conn->query('SELECT id,name,email,phone,role,eco_points,created_at FROM users'); echo '<table class="table"><tr><th>ID</th><th>Name</th><th>Email</th><th>Phone</th><th>Role</th><th>Points</th><th>Joined</th></tr>'; while($u=$res->fetch_assoc()){ echo '<tr><td>'.$u['id'].'</td><td>'.htmlspecialchars($u['name']).'</td><td>'.htmlspecialchars($u['email']).'</td><td>'.htmlspecialchars($u['phone']).'</td><td>'.htmlspecialchars($u['role']).'</td><td>'.htmlspecialchars($u['eco_points']).'</td><td>'.$u['created_at'].'</td></tr>'; } echo '</table>'; ?>
+<h4>Products</h4>
+<?php $p=$conn->query('SELECT id,name,price,carbon_impact,subscription_allowed FROM products'); echo '<table class="table"><tr><th>ID</th><th>Name</th><th>Price</th><th>Carbon</th><th>Subscription</th></tr>'; while($pr=$p->fetch_assoc()){ echo '<tr><td>'.$pr['id'].'</td><td>'.htmlspecialchars($pr['name']).'</td><td>R'.number_format($pr['price'],2).'</td><td>'.htmlspecialchars($pr['carbon_impact']).'</td><td>'.($pr['subscription_allowed']?'Yes':'No').'</td></tr>'; } echo '</table>'; ?>
+<h4>Pending Posts</h4>
+<?php $pp=$conn->query('SELECT id,title,created_at FROM posts WHERE approved=0'); echo '<ul>'; while($ppp=$pp->fetch_assoc()){ echo '<li>'.htmlspecialchars($ppp['title']).' - <a href="manage_posts.php">Manage</a></li>'; } echo '</ul>'; ?>
+</div><?php include '../includes/footer.php'; ?>
