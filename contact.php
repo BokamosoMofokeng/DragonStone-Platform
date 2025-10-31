@@ -1,0 +1,2 @@
+<?php session_start(); include 'includes/header.php'; ?>
+<div class="container py-5"><h2>Contact Us</h2><ul><li><b>Name:</b> Bokamoso Mofokeng</li><li><b>Email:</b> <a href="mailto:eduv4850864@vossie.net">eduv4850864@vossie.net</a></li><li><b>Phone:</b> 071 222 1111</li></ul></div><?php include 'includes/footer.php'; ?>
